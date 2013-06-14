@@ -170,7 +170,8 @@ Customize your values and run the following from your project root:
       GITHUB_SECRET='<your-github-oauth-secret>' \
       SECRET_KEY='<your-random-secret-key>' \
       SESSION_SECRET='<your-complex-session-secret>' \
-      TEAM_ID='<your-github-team-id>'
+      TEAM_ID='<your-github-team-id>' \
+      MAIN_ORGANIZATION='<your-organization>'
 
 ## 4. Deploy
 
