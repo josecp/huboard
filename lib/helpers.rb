@@ -21,6 +21,7 @@ class Huboard
               set :team_id, ENV["TEAM_ID"]
               set :user_name, ENV["USER_NAME"]
               set :password, ENV["PASSWORD"]
+              set :main_organization, ENV["MAIN_ORGANIZATION"]
               set :github_options, {
                 :secret    => ENV['GITHUB_SECRET'],
                 :client_id => ENV['GITHUB_CLIENT_ID'],
@@ -113,6 +114,10 @@ class Huboard
 
       def team_id
         settings.team_id
+      end
+
+      def main_organization
+        settings.main_organization
       end
     end
 
