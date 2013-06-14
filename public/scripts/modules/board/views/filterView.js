@@ -13,7 +13,7 @@ define(["../../common/events/postal"], function(postal) {
             this.name = params.name;
             this.type = params.type || "Simple";
             this.state = 0;
-            this.states = [0,1,2,0];
+            this.states = [0,1,0];
        },
        events: {
           "click" : "clicked",
@@ -33,9 +33,6 @@ define(["../../common/events/postal"], function(postal) {
              this.clear();
            break;
            case 1:
-             this.fade();
-           break;
-           case 2:
              this.solid();
            break;
          }

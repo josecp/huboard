@@ -88,14 +88,9 @@ define(["text!../templates/card.html","../models/card", "../../common/events/pos
         for(var key in self.filtersHash.simple) {
             filters.push(self.filtersHash.simple[key]);
         }
-        var fade = _.filter(filters,function(f){ return f.state === 1;});
-        var hide = _.filter(filters,function(f){ return f.state === 2;});
+        var hide = _.filter(filters,function(f){ return f.state === 1;});
         if(_.any(hide,function(f){ return !f.condition(self.issue.attributes); })){
            $(self.el).addClass("hide").removeClass("dim active");
-           return;
-        }
-        if(_.any(fade,function(f){ return !f.condition(self.issue.attributes); })){
-           $(self.el).addClass("dim").removeClass("hide active");
            return;
         }
 

@@ -50,6 +50,7 @@ define(["../../common/events/postal","./filterView"], function (postal, filterVi
       $this.append("<h5>Milestones</h5>");
       $this.append(noMilestone);
       $this.append(milestoneViews);
+
       $(milestoneViews.concat(noMilestone)).click(function(ev) {
          ev.preventDefault();
          var $this = $(this),
