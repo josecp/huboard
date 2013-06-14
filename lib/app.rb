@@ -44,14 +44,11 @@ class Huboard
       @parameters = params
       return erb :home, :layout => :marketing unless authenticated?
 
+      redirect "/#{main_organization}" if main_organization
+
       protected!
 
-      @repos = if main_organization
-        huboard.repos(main_organization)
-      else
-        huboard.all_repos
-      end
-
+      @repos = huboard.all_repos
       erb :index
     end
 
