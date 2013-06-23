@@ -21,11 +21,16 @@ define(["../../common/events/postal"], function(postal) {
             var prompt  = self.prompt;
             var options = null;
 
-            options = _.map(self.options, function(option) {
-                return self.optionTag(option[self.option_value], false);
+
+
+            options = _.map(self.options, function(option) {return option[self.option_value];})
+
+            options = _.map(options.sort(), function(option) {
+                console.log("Added " + option)
+                return self.optionTag(option, false);
             });
 
-            if (prompt) { options.push(self.optionTag(prompt, true)); }
+            if (prompt) { options.splice(0, 0, self.optionTag(prompt, true)); }
 
             $(this.el).html(options);
 
