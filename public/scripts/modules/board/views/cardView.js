@@ -95,7 +95,7 @@ define(["text!../templates/card.html","../models/card", "../../common/events/pos
         }
 
         $(self.el).removeClass("dim hide active");
-        if(fade.length || hide.length) {
+        if(hide.length) {
           $(self.el).addClass("active")
         };
 
