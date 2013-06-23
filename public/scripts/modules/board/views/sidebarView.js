@@ -7,6 +7,7 @@ define(["../../common/events/postal","./filterView"], function (postal, filterVi
       this.milestones = params.data.milestones;
       this.login = params.params.login;
       this.labels = params.data.other_labels;
+      this.priority_labels = params.data.priority_labels;
     },
     render: function () {
       var $this = $(this.el),
@@ -61,6 +62,21 @@ define(["../../common/events/postal","./filterView"], function (postal, filterVi
            $(v).trigger("clear");
          });
       });
+
+      var priorityLabelViews = new selectView({
+        options: this.priority_labels,
+        option_value: 'name',
+        prompt: 'All',
+        condition: function(issue, selected) {
+          return _.any(issue.labels, function(label) {
+            return label.name.toLocaleLowerCase() === selected.toLocaleLowerCase();
+          });
+        },
+        promptCondition: function(issue) { return true }
+      }).render().el;
+
+      $this.append("<h5>Priority</h5>");
+      $this.append(priorityLabelViews);
 
       var labels = _.map(this.labels, function(label) {
           return new filterView({color: "#" + label.color, name: label.name, condition: function (issue) { return _.any(issue.labels, function(l){ return l.name.toLocaleLowerCase() === label.name.toLocaleLowerCase();})}}).render().el;

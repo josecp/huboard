@@ -20,8 +20,12 @@ class Huboard
     return /@huboard:(.*)/
   end
 
+  def self.priority_pattern
+    return /P[0-9]/
+  end
+
   def self.all_patterns
-    [self.column_pattern, self.link_pattern, self.settings_pattern]
+    [self.column_pattern, self.link_pattern, self.settings_pattern, self.priority_pattern]
   end
 
   class SimpleCache < Hash

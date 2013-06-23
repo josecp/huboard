@@ -39,7 +39,8 @@ class Huboard
         :labels => columns,
         :milestones => milestones,
         :other_labels => other_labels,
-        :assignees => assignees.to_a
+        :assignees => assignees.to_a,
+        :priority_labels => priority_labels
       }
     end
 
