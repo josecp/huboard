@@ -21,12 +21,9 @@ define(["../../common/events/postal"], function(postal) {
             var prompt  = self.prompt;
             var options = null;
 
-
-
             options = _.map(self.options, function(option) {return option[self.option_value];})
 
             options = _.map(options.sort(), function(option) {
-                console.log("Added " + option)
                 return self.optionTag(option, false);
             });
 
