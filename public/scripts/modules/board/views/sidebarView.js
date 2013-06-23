@@ -41,16 +41,6 @@ define(["../../common/events/postal","./filterView", "./selectView"], function (
 
             var combined = (grouped.wip || []).concat(grouped.backlog || []);
 
-            var milestoneViews = new selectView({
-                options: combined,
-                option_value: 'title',
-                prompt: 'No milestone assigned',
-                condition: function(issue, selected) { return issue.milestone && issue.milestone.title.toLocaleLowerCase() === selected.toLocaleLowerCase(); },
-                promptCondition: function(issue) { return !issue.milestone; }
-            }).render().el;
-
-            $this.append("<h5>Milestones</h5>");
-            $this.append(milestoneViews);
 
             var priorityLabelViews = new selectView({
                 options: this.priority_labels,
@@ -67,11 +57,30 @@ define(["../../common/events/postal","./filterView", "./selectView"], function (
             $this.append("<h5>Priority</h5>");
             $this.append(priorityLabelViews);
 
-            var labels = _.map(this.labels, function(label) {
-                return new filterView({color: "#" + label.color, name: label.name, condition: function (issue) { return _.any(issue.labels, function(l){ return l.name.toLocaleLowerCase() === label.name.toLocaleLowerCase();})}}).render().el;
-            });
+            var labels = new selectView({
+                options: this.labels,
+                option_value: 'name',
+                prompt: 'All',
+                condition: function(issue, selected) {
+                    return _.any(issue.labels, function(label) {
+                        return label.name.toLocaleLowerCase() === selected.toLocaleLowerCase();
+                    });
+                },
+                promptCondition: function(issue) { return true }
+            }).render().el;
             $this.append("<h5>Labels</h5>");
             $this.append(labels);
+
+            var milestoneViews = new selectView({
+                options: combined,
+                option_value: 'title',
+                prompt: 'No milestone assigned',
+                condition: function(issue, selected) { return issue.milestone && issue.milestone.title.toLocaleLowerCase() === selected.toLocaleLowerCase(); },
+                promptCondition: function(issue) { return !issue.milestone; }
+            }).render().el;
+
+            $this.append("<h5>Milestones</h5>");
+            $this.append(milestoneViews);
             return this;
         }
     });
