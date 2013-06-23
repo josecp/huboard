@@ -41,16 +41,6 @@ define(["../../common/events/postal","./filterView", "./selectView"], function (
 
             var combined = (grouped.wip || []).concat(grouped.backlog || []);
 
-            var milestoneViews = new selectView({
-                options: combined,
-                option_value: 'title',
-                prompt: 'No milestone assigned',
-                condition: function(issue, selected) { return issue.milestone && issue.milestone.title.toLocaleLowerCase() === selected.toLocaleLowerCase(); },
-                promptCondition: function(issue) { return !issue.milestone; }
-            }).render().el;
-
-            $this.append("<h5>Milestones</h5>");
-            $this.append(milestoneViews);
 
             var priorityLabelViews = new selectView({
                 options: this.priority_labels,
@@ -72,6 +62,17 @@ define(["../../common/events/postal","./filterView", "./selectView"], function (
             });
             $this.append("<h5>Labels</h5>");
             $this.append(labels);
+
+            var milestoneViews = new selectView({
+                options: combined,
+                option_value: 'title',
+                prompt: 'No milestone assigned',
+                condition: function(issue, selected) { return issue.milestone && issue.milestone.title.toLocaleLowerCase() === selected.toLocaleLowerCase(); },
+                promptCondition: function(issue) { return !issue.milestone; }
+            }).render().el;
+
+            $this.append("<h5>Milestones</h5>");
+            $this.append(milestoneViews);
             return this;
         }
     });
