@@ -20,6 +20,7 @@ define(["../collections/issues","text!../templates/column.html","./cardView","..
       });
 
        $("ul", this.el).append(cards);
+       $(".card_count", this.el).html(issues.length);
 
     },
     onOpened: function(issue){
